@@ -64,7 +64,26 @@ int main() {
  * @return string - The output string specified in the documentation above
  */
 string Goldilocks(string item, int number) {
-  // CODE HERE
+  if (item != "porridge" && item != "chair" && item != "bed") {
+        item = "bed";
+    }
+    if (number < 1 || number > 3) {
+        number = 3;
+    }
+    
+    if (item == "porridge") {
+        if (number == 1) return "This porridge is too hot";
+        if (number == 2) return "This porridge is too cold";
+        return "This porridge is just right";
+    } else if (item == "chair") {
+        if (number == 1) return "This chair is too big";
+        if (number == 2) return "This chair is too small";
+        return "This chair is just right";
+    } else {
+        if (number == 1) return "This bed is too hard";
+        if (number == 2) return "This bed is too soft";
+        return "This bed is just right";
+    }
 }
 
 /*
@@ -80,8 +99,33 @@ string Goldilocks(string item, int number) {
  * @return int - 1 if player one wins, 2 if player two wins, 3 on a draw
  */
 int RockScissorPaper(char player_one, char player_two) {
-  // YOU MUST USE A SWITCH IN THIS FUNCTION
-  // CODE HERE
+player_one = tolower(player_one);
+    player_two = tolower(player_two);
+    
+    switch (player_one) {
+        case 'r':
+            switch (player_two) {
+                case 'r': return 3;
+                case 's': return 1;
+                case 'p': return 2;
+            }
+            break;
+        case 's':
+            switch (player_two) {
+                case 'r': return 2;
+                case 's': return 3;
+                case 'p': return 1;
+            }
+            break;
+        case 'p':
+            switch (player_two) {
+                case 'r': return 1;
+                case 's': return 2;
+                case 'p': return 3;
+            }
+            break;
+    }
+    return 3;
 }
 
 /*
@@ -94,9 +138,9 @@ int RockScissorPaper(char player_one, char player_two) {
  *                  the char
  */
 string CharWithAsciiValueAsString(char character) {
-  // CODE HERE
-
-  // HINT: try a stringstream here
+ stringstream ss;
+    ss << character << " " << static_cast<int>(character);
+    return ss.str();
 }
 
 /*
@@ -105,7 +149,10 @@ string CharWithAsciiValueAsString(char character) {
  * @return string - a string containing the converted input string
  */
 string ToLower(string input) {
-  // CODE HERE
+  for (char &c : input) {
+        c = tolower(c);
+    }
+    return input;
 }
 
 /*
@@ -114,7 +161,10 @@ string ToLower(string input) {
  * @return string - a string containing the converted input string
  */
 string ToUpper(string input) {
-  // CODE HERE
+  for (char &c : input) {
+        c = toupper(c);
+    }
+    return input;
 }
 
 /*
@@ -127,7 +177,10 @@ string ToUpper(string input) {
  *                outside the range of the string. The null character is '\0'
  */
 char GetCharacter(string input, int char_index) {
-  // CODE HERE
+   if (char_index >= 0 && char_index < static_cast<int>(input.length())) {
+        return input[char_index];
+    }
+    return '\0';
 }
 
 // For testing (DO NOT ALTER)
