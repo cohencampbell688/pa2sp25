@@ -65,7 +65,9 @@ int main() {
  *                  floating-point value
  */
 string MakeString(string label, double value, char separator) {
-  // CODE HERE
+  stringstream ss;
+  ss << label << " " << separator << " " << value;
+  return ss.str();
 }
 
 /*
@@ -77,7 +79,9 @@ string MakeString(string label, double value, char separator) {
  *                when value is length 0 or value is length > 1
  */
 char StringToChar(string value) {
-  // CODE HERE
+  if (value.length() == 1)
+    return value[0];
+  return '\0';
 }
 
 /*
@@ -97,7 +101,7 @@ int StringToInt(string value) {
 
   try {
     converter >> ivalue;
-  } catch (ios_base::failure f) {
+  } catch (const ios_base::failure& f) {
   }
 
   return ivalue;
@@ -113,7 +117,16 @@ int StringToInt(string value) {
  * @return double - A double representing the value, or 0 on failure
  */
 double StringToDouble(string value) {
-  // CODE HERE
+  double dvalue = 0.0;
+  stringstream converter(value);
+  converter.exceptions(ios_base::failbit);
+
+  try {
+    converter >> dvalue;
+  } catch (const ios_base::failure& f) {
+  }
+
+  return dvalue;
 }
 
 /*
@@ -128,7 +141,14 @@ double StringToDouble(string value) {
  *                Return false on anything else.
  */
 bool StringToBool(string value) {
-  // CODE HERE
+  if (!value.empty()) {
+    char firstChar = tolower(value[0]);
+    if (firstChar == 't')
+      return true;
+    if (firstChar == 'f')
+      return false;
+  }
+  return false;
 }
 
 // For testing (DO NOT ALTER)
