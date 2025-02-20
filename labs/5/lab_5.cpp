@@ -26,8 +26,8 @@ using std::stringstream;
  * @return string - A string containing the contents of values separated by the
  *                  specified separator character
  */
-string PrepareForDisplay(int values[], int size, char separator = ',');
-
+ string PrepareForDisplay(int values[], int size, char separator = ',');
+ 
 /*
  * Test to see if an array contains a specified value.
  * @param int values -  An array of integers
@@ -35,7 +35,7 @@ string PrepareForDisplay(int values[], int size, char separator = ',');
  * @param int value - The value to search for within the array
  * @return bool - true if value is found in the array, otherwise false
  */
-bool HasValue(int values[], int size, int value);
+bool HasValue(int values[], int size, int value); 
 
 /*
  * Return the value from an array at a specified index.
@@ -87,8 +87,52 @@ int main() {
 }
 
 // CODE HERE (FUNCTION DEFINITIONS)
-
-
+string PrepareForDisplay(int values[], int size, char separator) {
+     stringstream ss;
+     for (int i = 0; i < size; i++) {
+         if (i > 0) {
+             ss << separator;
+         }
+         ss << values[i];
+     }
+     return ss.str();
+ }
+ 
+ bool HasValue(int values[], int size, int value) {
+     for (int i = 0; i < size; i++) {
+         if (values[i] == value) {
+             return true;
+         }
+     }
+     return false;
+ }
+ 
+ int ValueAt(int values[], int size, int index, bool &error) {
+     if (index < 0 || index >= size) {
+         error = true;
+         return 0;
+     }
+     error = false;
+     return values[index];
+ }
+ 
+ int Sum(int values[], int size) {
+     int sum = 0;
+     for (int i = 0; i < size; i++) {
+         sum += values[i];
+     }
+     return sum;
+ }
+ 
+ bool SwapValues(int values[], int size, int index1, int index2) {
+     if (index1 < 0 || index1 >= size || index2 < 0 || index2 >= size) {
+         return false;
+     }
+     int temp = values[index1];
+     values[index1] = values[index2];
+     values[index2] = temp;
+     return true;
+ }
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
