@@ -26,7 +26,12 @@ std::vector<int> failed_tests;
 // Program Execution Starts Here
 int main() {
   // Add code to manually test your functions below
-
+  bool CheckAlphabetic(const std::string& str);
+  bool EncryptString(std::string& str, int shift);
+  bool DecryptString(std::string& str, int shift);
+  double ComputeAverage(double arr[], unsigned int size);
+  double FindMinValue(double arr[], unsigned int size);
+  double FindMaxValue(double arr[], unsigned int size);
   // To test your code (Comment Out to Manually Test)
   UnitTest();
   // This ends program execution
