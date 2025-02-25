@@ -34,6 +34,7 @@ void Hello();
  * Display message to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+void PrintMessage(const string& message);
 
 /*
  * function name: GetAnswer
@@ -44,6 +45,7 @@ void Hello();
  * Return the value 42
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int GetAnswer();
 
 /*
  * function name: FindLarger
@@ -55,6 +57,7 @@ void Hello();
  * if the values are equivalent.
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int FindLarger(const int& num1, const int& num2);
 
 /*
  * function name: GetStats
@@ -69,6 +72,7 @@ void Hello();
  * characters in the first parameter (string)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+int GetStats(const string& text, int& upper_count, int& lower_count);
 
 /*
  * function name: BuildMessage
@@ -83,7 +87,7 @@ void Hello();
  * "Message: empty".
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+string BuildMessage(const string& text = "", const bool& to_upper = false);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
@@ -106,6 +110,44 @@ int main() {
 // CODE HERE (FUNCTION DEFINITIONS)
 void Hello() {
   cout << "Hello world!";
+}
+
+void PrintMessage(const string& message) {
+  cout << message;
+}
+
+int GetAnswer() {
+  return 42;
+}
+
+int FindLarger(const int& num1, const int& num2) {
+  return (num1 > num2) ? num1 : num2;
+}
+
+int GetStats(const string& text, int& upper_count, int& lower_count) {
+  upper_count = 0;
+  lower_count = 0;
+  for (char ch : text) {
+      if (std::isupper(ch)) {
+          upper_count++;
+      } else if (std::islower(ch)) {
+          lower_count++;
+      }
+  }
+  return text.length();
+}
+
+string BuildMessage(const string& text, const bool& to_upper) {
+  if (text.empty()) {
+      return "Message: empty";
+  }
+  string modified_text = text;
+  if (to_upper) {
+      for (char& ch : modified_text) {
+          ch = std::toupper(ch);
+      }
+  }
+  return "Message: " + modified_text;
 }
 
 // For testing (DO NOT ALTER)
