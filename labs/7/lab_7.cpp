@@ -57,6 +57,40 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+bool ProcessFile(string filename) {
+  ifstream file(filename);
+  
+  if (!file.is_open()) {
+    return false;
+  }
+
+  int value;
+  while (file >> value) {
+    switch (value) {
+      case 10:
+        OnTen();
+        break;
+      case 20:
+        OnTwenty();
+        break;
+      case 30:
+        OnThirty();
+        break;
+      case 40:
+        OnForty();
+        break;
+      case 50:
+        OnFifty();
+        break;
+      default:
+        OnError();
+        break;
+    }
+  }
+
+  file.close();
+  return true;
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
